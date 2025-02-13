@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Recipe Book</title>
+</head>
+<body>
+  <h1>Recipe Book</h1>
+  <br>
+  <h2>Recipes</h2>
+  <ul>
+    {% for recipe in recipes %}
+    <li>
+      <h3>{{ recipe.name }}</h3>
+      <ul>
+        {% for ingredient in recipe.ingredients %}
+        <li>
+          {{ ingredient.quantity }} {{ ingredient.name }}
+        </li>
+        {% endfor %}
+      </ul>
+      <br>
+      <a href="{{ recipe.link }}">Link to Original Recipe</a>
+    </li>
+    <br>
+    {% endfor %}
+  </ul>
+</body>
+</html>
