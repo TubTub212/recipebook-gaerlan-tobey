@@ -5,11 +5,11 @@ from .models import Recipe, Ingredient
 
 class RecipeListView(ListView):
     model = Recipe
-    recipes = Recipe.objects.all()
     template_name = 'recipe-list.html'
 
 class RecipeDetailView(DetailView):
     model = Recipe
+    ingredients = Ingredient.objects.filter(recipe__recipe__name="recipe.name")
     template_name = 'recipe.html'
 
 
