@@ -1,11 +1,9 @@
 from django.urls import path
-
-from .views import recipeList, recipe1, recipe2
-
-urlpatterns = [
-    path('recipes/list', recipeList, name='recipe-list'),
-    path('recipe/1', recipe1, name='recipe_1'),
-    path('recipe/2', recipe2, name='recipe_2')
-]
+from .views import RecipeListView, RecipeDetailView
 
 app_name = "ledger"
+
+urlpatterns = [
+    path('recipes/list/', RecipeListView.as_view(), name='recipes_list'),
+    path('recipe/<int:pk>/', RecipeDetailView.as_view(), name='recipe_detail'),
+    ]
