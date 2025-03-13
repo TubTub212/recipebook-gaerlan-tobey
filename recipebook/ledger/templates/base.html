@@ -3,9 +3,18 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{% block title %}im gonna cry man hend selp{% endblock %}</title>
+  <title>{% block title %}Recipebook{% endblock %}</title>
 </head>
 <body>
+  {% if not request.get_full_path == "/accounts/login/" %}
+  {% if request.user.is_authenticated %}
+  <form method="POST" action="{% url 'logout' %}">
+    {% csrf_token %}
+    <button type="submit">Logout</button>
+  </form>
+  {% elif not request.user.is_authenticated %}
+  <a href="{% url 'login' %}">Login</a>
+  {% endif %}
     <h1>Recipe Book</h1>
     <div id="content">
         {% block content %}{% endblock %}
